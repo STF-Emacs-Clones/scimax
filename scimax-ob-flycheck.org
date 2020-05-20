@@ -37,7 +37,7 @@ See [[id:4C28546C-8F3F-4AD4-900E-C623C8485183][Known Limitations]].
 ;; To use this module, enable `scimax-ob-flycheck-mode' in the buffer.
 
 ;;; Code
-(require 'cl)
+(require 'cl-lib)
 (require 'f)
 (require 's)
 (require 'ov)

@@ -783,7 +783,7 @@
 (unless (fboundp 'file-remote-p) (require 'ffap)) ;; ffap-file-remote-p
 (eval-when-compile (require 'gnus)) ;; mail-header-id (really in `nnheader.el')
 (eval-when-compile (require 'gnus-sum)) ;; gnus-summary-article-header
-(eval-when-compile (require 'cl)) ;; case, multiple-value-bind, typecase (plus, for Emacs 20: dolist, push)
+(eval-when-compile (require 'cl-lib)) ;; case, multiple-value-bind, typecase (plus, for Emacs 20: dolist, push)
 
 (when (and (require 'thingatpt+ nil t) ;; (no error if not found):
            (fboundp 'tap-put-thing-at-point-props)) ; >= 2012-08-21
@@ -1118,14 +1118,14 @@ of the following, if available:
 ;;;###autoload (autoload 'bmkp-default-handlers-for-file-types "bookmark+")
 (defcustom bmkp-default-handlers-for-file-types
   (and (require 'dired-x)               ; It in turn requires `dired-aux.el'
-       (eval-when-compile (when (< emacs-major-version 21) (require 'cl))) ;; `dolist', for Emacs 20
+       (eval-when-compile (when (< emacs-major-version 21) (require 'cl-lib))) ;; `dolist', for Emacs 20
        (let ((assns  ()))
          (dolist (shell-assn  dired-guess-shell-alist-user)
            (push (cons (car shell-assn)
                        `(lambda (bmk)
-                         (dired-run-shell-command
-                          (dired-shell-stuff-it ,(cadr shell-assn) (list (bookmark-get-filename bmk))
-                           nil nil))))
+                          (dired-run-shell-command
+                           (dired-shell-stuff-it ,(cadr shell-assn) (list (bookmark-get-filename bmk))
+                                                 nil nil))))
                  assns))
          assns))
   "*File associations for bookmark handlers used for indirect bookmarks.
@@ -1155,8 +1155,8 @@ given file name does not match this option, and if
 in the default handler.  For that it uses `dired-guess-default' and
 \(Emacs 23+ only) mailcap entries, in that order."
   :type '(alist :key-type
-          regexp :value-type
-          (sexp :tag "Shell command (string) or Emacs function (symbol or lambda form)"))
+                regexp :value-type
+                (sexp :tag "Shell command (string) or Emacs function (symbol or lambda form)"))
   :group 'bookmark-plus)
 
 ;;;###autoload (autoload 'bmkp-desktop-default-directory "bookmark+")

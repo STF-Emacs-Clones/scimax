@@ -346,7 +346,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 
-(eval-when-compile (require 'cl)) ;; case (plus, for Emacs 20: dolist, push)
+(eval-when-compile (require 'cl-lib)) ;; case (plus, for Emacs 20: dolist, push)
 (eval-when-compile (require 'easymenu)) ;; easy-menu-create-menu
 (eval-when-compile (require 'org nil t)) ;; org-add-link-type
 

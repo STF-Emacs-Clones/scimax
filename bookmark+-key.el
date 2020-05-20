@@ -102,7 +102,7 @@
      (require 'bookmark+-mac)))         ; Require, so can load separately if not on `load-path'.
 ;; bmkp-menu-bar-make-toggle
 
-(eval-when-compile (require 'cl)) ;; case
+(eval-when-compile (require 'cl-lib)) ;; case
 
 
 ;; Prefix keys.
