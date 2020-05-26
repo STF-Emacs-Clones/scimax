@@ -66,10 +66,12 @@ Our concept of a notebook is that it is a directory that is a project as defined
 ;; * Setup
 (projectile-mode +1)
 
-(use-package ggtags)
-(use-package ibuffer-projectile)
+(use-package ggtags
+  :straight t)
+(use-package ibuffer-projectile
+  :straight t)
 (when (executable-find "ag")
-  (use-package ag))
+  (use-package ag :straight t))
 
 (require 'scimax-apps)
 #+END_SRC
@@ -516,7 +518,7 @@ Here is a function you can use to interactively search files by pattern. For exa
 
 #+BEGIN_SRC emacs-lisp :tangle yes
 (use-package ivy-xref
-  :ensure t
+  :straight t
   :init (if (< emacs-major-version 27)
             (setq xref-show-xrefs-function #'ivy-xref-show-xrefs)
           (setq xref-show-definitions-function #'ivy-xref-show-defs)))

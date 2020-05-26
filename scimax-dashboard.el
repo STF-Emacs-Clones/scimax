@@ -20,10 +20,10 @@
 
 ;;; Code:
 
-(require 'cl-lib)
-(require 'avy)
-(require 'counsel)
-(require 'dashboard)
+(use-package cl-lib)
+(use-package avy)
+(use-package counsel)
+(use-package dashboard)
 
 (defcustom scimax-dashboard-check-git-updates t
   "When non-nil check for updates."
@@ -32,26 +32,26 @@
 
 
 (use-package dashboard
-  :ensure t
-  :diminish dashboard-mode
+  :straight t
+  ;; :diminish dashboard-mode
   :bind (:map dashboard-mode-map
-	      ("a" . scimax-dashboard-jump-to-button)
-	      ("i" . previous-line)
-	      ("k" . forward-line)
-	      ("s-i" . dashboard-previous-section)
-	      ("j" . dashboard-previous-section)
-	      ("s-k" . dashboard-next-section)
-	      ("l" . dashboard-next-section)
-	      ("o" . widget-button-click)
-	      ("?" . scimax-dashboard-describe-keys))
+              ("a" . scimax-dashboard-jump-to-button)
+              ("i" . previous-line)
+              ("k" . forward-line)
+              ("s-i" . dashboard-previous-section)
+              ("j" . dashboard-previous-section)
+              ("s-k" . dashboard-next-section)
+              ("l" . dashboard-next-section)
+              ("o" . widget-button-click)
+              ("?" . scimax-dashboard-describe-keys))
   :config
   (setq dashboard-banner-logo-title "Awesome editing for scientists and engineers")
   (setq dashboard-startup-banner (expand-file-name "scimax.png" scimax-dir))
   (setq dashboard-items '((scimax . t)
-			  (scimax-agenda . 5)
-			  (scimax-recentf  . 5)
-			  (scimax-bookmarks . 5)
-			  (scimax-projects . 5)))
+                          (scimax-agenda . 5)
+                          (scimax-recentf  . 5)
+                          (scimax-bookmarks . 5)
+                          (scimax-projects . 5)))
   (dashboard-setup-startup-hook))
 
 
@@ -207,7 +207,7 @@
 		 :action `(lambda (&rest ignore)
 			    (org-agenda nil "a"))
 		 :mouse-face 'highlight
-		 :button-face '(:background "Lightgray" :underline t)
+		 :button-face '(:background "gray30" :underline t)
 		 :help-echo "Agenda"
 		 :follow-link "\C-m"
 		 :button-prefix ""
@@ -219,7 +219,7 @@
 		 :action `(lambda (&rest ignore)
 			    (org-agenda nil "t"))
 		 :mouse-face 'highlight
-		 :button-face '(:background "Lightgray" :underline t)
+		 :button-face '(:background "gray30" :underline t)
 		 :help-echo "Agenda"
 		 :follow-link "\C-m"
 		 :button-prefix ""
@@ -232,7 +232,7 @@
 		 :action `(lambda (&rest ignore)
 			    (org-agenda nil "m"))
 		 :mouse-face 'highlight
-		 :button-face '(:background "Lightgray" :underline t)
+		 :button-face '(:background "gray30" :underline t)
 		 :help-echo "Search by tag/property"
 		 :follow-link "\C-m"
 		 :button-prefix ""
@@ -244,7 +244,7 @@
 		 :action `(lambda (&rest ignore)
 			    (org-agenda nil "s"))
 		 :mouse-face 'highlight
-		 :button-face '(:background "Lightgray" :underline t)
+		 :button-face '(:background "gray30" :underline t)
 		 :help-echo "Search for keywords"
 		 :follow-link "\C-m"
 		 :button-prefix ""
@@ -256,12 +256,12 @@
 		 :action `(lambda (&rest ignore)
 			    (org-agenda nil "/"))
 		 :mouse-face 'highlight
-		 :button-face '(:background "Lightgray" :underline t)
+		 :button-face '(:background "gray30" :underline t)
 		 :help-echo "moccur"
 		 :follow-link "\C-m"
 		 :button-prefix ""
 		 :button-suffix ""
-		 :format "%[%t%]"
+		 :format "%[%t%]\n    "
 		 "moccur"))
 
 (add-to-list 'dashboard-item-generators  '(scimax-agenda . scimax-dashboard-agenda))
@@ -275,12 +275,12 @@
 		 :action `(lambda (&rest ignore)
 			    (counsel-recentf))
 		 :mouse-face 'highlight
-		 :button-face '(:background "Lightgray" :underline t)
+		 :button-face '(:background "gray30" :underline t)
 		 :help-echo "counsel-recentf"
 		 :follow-link "\C-m"
 		 :button-prefix ""
 		 :button-suffix ""
-		 :format "%[%t%]"
+		 :format "%[%t%]\n    "
 		 "Open another recent file"))
 
 (add-to-list 'dashboard-item-generators  '(scimax-recentf . scimax-dashboard-recentf))
@@ -294,12 +294,12 @@
 		 :action `(lambda (&rest ignore)
 			    (counsel-bookmark))
 		 :mouse-face 'highlight
-		 :button-face '(:background "Lightgray" :underline t)
+		 :button-face '(:background "gray30" :underline t)
 		 :help-echo "Open another bookmark."
 		 :follow-link "\C-m"
 		 :button-prefix ""
 		 :button-suffix ""
-		 :format "%[%t%]"
+		 :format "%[%t%]\n    "
 		 "Open another bookmark."))
 
 (add-to-list 'dashboard-item-generators  '(scimax-bookmarks . scimax-dashboard-bookmarks))
@@ -313,12 +313,12 @@
 		 :action `(lambda (&rest ignore)
 			    (projectile-switch-project))
 		 :mouse-face 'highlight
-		 :button-face '(:background "Lightgray" :underline t)
+		 :button-face '(:background "gray30" :underline t)
 		 :help-echo "Open another project."
 		 :follow-link "\C-m"
 		 :button-prefix ""
 		 :button-suffix ""
-		 :format "%[%t%]"
+		 :format "%[%t%]\n    "
 		 "Open another project"))
 
 (add-to-list 'dashboard-item-generators  '(scimax-projects . scimax-dashboard-projects))

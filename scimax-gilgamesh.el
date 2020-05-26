@@ -31,7 +31,8 @@
 ;; gilgamesh.
 
 
-(require 's)
+(use-package s
+  :straight t)
 
 (defvar scimax-gilgamesh-ssh-sockets '()
   "List of ssh connections we need to clean up.

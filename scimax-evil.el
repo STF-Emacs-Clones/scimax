@@ -6,15 +6,16 @@
 ;;; Code:
 
 (use-package evil
-  :ensure t
+  :straight t
   :init
   (setq evil-want-integration nil)
   :config
   (evil-mode 1))
 
-(use-package evil-collection)
+(use-package evil-collection
+  :straight t)
 (use-package general
-  :ensure t
+  :straight t
   :config
   (setq general-override-states '(emacs
 				  hybrid

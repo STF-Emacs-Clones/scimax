@@ -51,7 +51,8 @@
 ;;
 ;;; Code:
 
-(require 'calendar)
+(use-package calendar
+  :straight t)
 (require 'scimax-org)
 
 

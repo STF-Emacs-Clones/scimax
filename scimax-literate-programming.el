@@ -24,7 +24,8 @@
 ;;
 ;;; Code:
 
-(require 'f)
+(use-package f
+  :straight t)
 
 ;; languages supported in etags
 ;; ada        .ads .adb .ada

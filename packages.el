@@ -10,11 +10,10 @@
 
 ;;; Code:
 
-(setq use-package-always-ensure t)
-
 ;; * org-mode
 ;; load this first before anything else to avoid mixed installations
 (use-package org-plus-contrib
+  :straight (org-plus-contrib :type git :repo "https://code.orgmode.org/bzg/org-mode.git" :local-repo "org" :files (:defaults "contrib/lisp/*.el"))
   :mode ("\\.org\\'" . org-mode)
   :init
   ;; Use the current window for C-c ' source editing
@@ -43,13 +42,10 @@
 
 
 ;; * Other packages
-(use-package diminish)
-
 (use-package aggressive-indent
   :config (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode))
 
 (use-package auto-complete
-  :diminish auto-complete-mode
   :config (ac-config-default))
 
 (use-package avy)
@@ -58,7 +54,7 @@
 ;; May 24, 2017: this seems to be causing emacs 25.2 to be crashing on my linux box.
 (unless (eq system-type 'gnu/linux)
   (use-package tex
-    :ensure auctex))
+    :straight auctex))
 
 ;; [2019-01-07 Mon] This also sometimes causes problems installing scimax,
 ;; especially on Windows.
@@ -90,13 +86,12 @@
   :bind
   ("C-s" . counsel-grep-or-swiper)
   ("H-s" . swiper-all)
-  :diminish ivy-mode
   :config
   (ivy-mode))
 
 (use-package counsel
   :init
-  (require 'ivy)
+  (use-package ivy)
   (setq projectile-completion-system 'ivy)
   (setq ivy-use-virtual-buffers t)
   (define-prefix-command 'counsel-prefix-map)
@@ -119,7 +114,6 @@
    ("H-c g" . counsel-git-grep)
    ("H-c a" . counsel-ag)
    ("H-c p" . counsel-pt))
-  :diminish ""
   :config
   (progn
     (counsel-mode)
@@ -256,7 +250,6 @@
 (use-package hydra
   :init
   (setq hydra-is-helpful t)
-
   :config
   (require 'hydra-ox))
 
@@ -290,24 +283,21 @@
 (use-package mustache)
 
 ;; this is a git submodule
-(if (executable-find "jupyter")
-    (use-package ob-ipython
-      :ensure nil
-      :load-path (lambda () (expand-file-name "ob-ipython-upstream" scimax-dir))
-      :init (add-to-list 'load-path (expand-file-name "ob-ipython-upstream" scimax-dir))
-      (require 'ob-ipython))
-  (message "jupyter was not found on your path. ob-ipython was not loaded."))
+;; (if (executable-find "jupyter")
+;;     (use-package ob-ipython
+;;       :load-path (lambda () (expand-file-name "ob-ipython-upstream" scimax-dir))
+;;       :init (add-to-list 'load-path (expand-file-name "ob-ipython-upstream" scimax-dir))
+;;       (require 'ob-ipython))
+;;   (message "jupyter was not found on your path. ob-ipython was not loaded."))
 
-(use-package scimax-org-babel-ipython-upstream
-  :ensure nil
-  :load-path scimax-dir)
+;; (use-package scimax-org-babel-ipython-upstream
+;;   :load-path scimax-dir)
 
 (use-package ov)
 
 (use-package pdf-tools)
 
 (use-package org-mime
-  :ensure nil
   :load-path (lambda () (expand-file-name "org-mime" scimax-dir))
   :init (setq org-mime-up-subtree-heading 'org-back-to-heading
 	      org-mime-export-options '(:section-numbers nil
@@ -317,7 +307,6 @@
 
 ;; this is a git submodule
 (use-package org-ref
-  :ensure nil
   :load-path (lambda () (expand-file-name "org-ref" scimax-dir))
   :init
   (add-to-list 'load-path
@@ -335,15 +324,12 @@
   )
 
 (use-package org-ref-arxiv
-  :ensure nil
   :load-path (lambda () (expand-file-name "org-ref" scimax-dir)))
 
 (use-package org-ref-scopus
-  :ensure nil
   :load-path (lambda () (expand-file-name "org-ref" scimax-dir)))
 
 (use-package org-ref-wos
-  :ensure nil
   :load-path (lambda () (expand-file-name "org-ref" scimax-dir)))
 
 
@@ -380,17 +366,16 @@
 ;; Functions for working with strings
 (use-package s)
 
-(use-package smart-mode-line
-  :config
-  (setq sml/no-confirm-load-theme t)
-  (setq sml/theme 'light)
-  (sml/setup))
+;; (use-package smart-mode-line
+;;  :config
+;;  (setq sml/no-confirm-load-theme t)
+;;  (setq sml/theme 'light)
+;;  (sml/setup))
 
 ;; keep recent commands available in M-x
 (use-package smex)
 
 (use-package undo-tree
-  :diminish undo-tree-mode
   :config (global-undo-tree-mode))
 
 ;; Note ws-butler-global-mode causes some issue with org-ref ref links. If you
@@ -405,20 +390,17 @@
 
 ;; * Scimax packages
 (use-package scimax
-  :ensure nil
   :load-path scimax-dir
   :init (require 'scimax)
   :bind
   ("C-x C-b" . ibuffer))
 
 (use-package scimax-mode
-  :ensure nil
   :load-path scimax-dir
   :init (require 'scimax-mode)
   :config (scimax-mode))
 
 (use-package scimax-org
-  :ensure nil
   :load-path scimax-dir
   :bind
   ("s--" . org-subscript-region-or-point)
@@ -435,16 +417,13 @@
   (require 'scimax-org))
 
 (use-package ox-clip
-  :ensure nil
   :load-path (lambda () (expand-file-name "ox-clip" scimax-dir))
   :bind ("H-k" . ox-clip-formatted-copy))
 
 (use-package scimax-email
-  :ensure nil
   :load-path scimax-dir)
 
 (use-package scimax-spellcheck
-  :ensure nil
   :load-path scimax-dir)
 
 (org-babel-load-file (expand-file-name "scimax-notebook.org" scimax-dir))
@@ -453,20 +432,16 @@
 ;;   :load-path scimax-dir)
 
 (use-package scimax-utils
-  :ensure nil
   :load-path scimax-dir
   :bind ( "<f9>" . hotspots))
 
 (use-package bibtex-hotkeys
-  :ensure nil
   :load-path scimax-dir)
 
 (use-package ox-manuscript
-  :ensure nil
   :load-path (lambda () (expand-file-name "ox-manuscript" scimax-dir)))
 
 (use-package org-show
-  :ensure nil
   :load-path (lambda () (expand-file-name "org-show" scimax-dir)))
 
 ;; (use-package techela
@@ -474,12 +449,10 @@
 ;;   :load-path (lambda () (expand-file-name "techela" scimax-dir)))
 
 (use-package words
-  :ensure nil
   :load-path scimax-dir
   :bind ("H-w" . words-hydra/body))
 
 (use-package ore
-  :ensure nil
   :load-path scimax-dir
   :bind ("H-o" . ore))
 
@@ -488,40 +461,31 @@
 ;;   :load-path scimax-dir)
 
 (use-package scimax-ivy
-  :ensure nil
   :load-path scimax-dir)
 
 (use-package scimax-lob
-  :ensure nil
   :load-path scimax-dir)
 
 (use-package scimax-yas
-  :ensure nil
   :load-path scimax-dir)
 
 (use-package scimax-autoformat-abbrev
-  :ensure nil
   :load-path scimax-dir)
 
 (use-package scimax-hydra
-  :ensure nil
   :load-path scimax-dir
   :bind ("<f12>" . scimax/body))
 
 (use-package scimax-journal
-  :ensure nil
   :load-path scimax-dir)
 
 (use-package scimax-apps
-  :ensure nil
   :load-path scimax-dir)
 
 (use-package scimax-ob
-  :ensure nil
   :load-path scimax-dir)
 
 (use-package kitchingroup
-  :ensure nil
   :load-path scimax-dir)
 
 ;; (use-package ov-highlight

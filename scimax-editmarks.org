@@ -143,9 +143,12 @@ This code was inspired by and adapted from https://gnu.support/gnu-emacs/emacs-l
 ;;
 
 ;;; Code
-(require 'cl-lib)
-(require 'color)
-(require 'easymenu)
+(use-package cl-lib
+  :straight t)
+(use-package color
+  :straight t)
+(use-package easymenu
+  :straight t)
 
 #+END_SRC
 

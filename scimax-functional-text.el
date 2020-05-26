@@ -27,8 +27,10 @@
 ;; git commits:  commit 05fcea6
 ;; pull requests: pr #146  pull #146  or pull request #146
 
-(require 'thingatpt)
-(require 'button-lock)
+(use-package thingatpt
+  :straight t)
+(use-package button-lock
+  :straight t)
 ;;; Code:
 
 (global-button-lock-mode)

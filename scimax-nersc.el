@@ -35,7 +35,7 @@
 ;; jupyter-kernel" to kill these. To fix this, I need to have the pid I think,
 ;; so I can kill it. It should also not leave jupyter repl buffers around.
 
-(require 's)
+(use-package s)
 (require 'scimax-jupyter)
 
 

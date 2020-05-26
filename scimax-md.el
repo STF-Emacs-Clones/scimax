@@ -3,7 +3,8 @@
 ;;; Commentary:
 ;;
 
-(require 'ox-md)
+(use-package ox-md
+  :straight t)
 
 ;; * A better link exporter
 ;; Handle figures better, mostly with captions and labels.
@@ -178,7 +179,8 @@ Return output file name."
 
 
 ;; * buttons for markdown mode
-(require 'button-lock)
+(use-package button-lock
+  :straight t)
 
 
 (defun scimax-md-activate-buttons ()

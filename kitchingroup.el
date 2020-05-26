@@ -3,9 +3,11 @@
 ;;; Commentary:
 ;; This module is mostly for members of my research group.
 
-(use-package gitter)
+(use-package gitter
+  :straight t)
 ;; (require 'scimax-notebook)
-(require 'cal-iso)
+(use-package cal-iso
+  :straight calendar)
 
 ;;; Code:
 

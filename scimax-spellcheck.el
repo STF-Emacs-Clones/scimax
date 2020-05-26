@@ -14,9 +14,11 @@
 ;; [2019-08-10 Sat] I took out some mac/windows specific things. The plan is to
 ;; get this to work generally as much as possible, and not to hack a special
 ;; solution for windows.
-(use-package ispell)
+(use-package ispell
+  :straight t)
 
-(use-package flyspell)
+(use-package flyspell
+  :straight t)
 
 (defcustom scimax-aspell-language-option "--lang=en_US"
   "Option to use in `ispell-extra-args' to specify the default language."
@@ -24,7 +26,7 @@
   :group 'scimax-aspell)
 
 (use-package flyspell-correct-ivy
-  :ensure t
+  :straight t
   :init
   (setq ispell-program-name "aspell"
 	ispell-extra-args `("--encoding=utf-8" "--sug-mode=ultra" ,scimax-aspell-language-option)

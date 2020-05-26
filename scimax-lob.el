@@ -6,8 +6,10 @@
 ;; enables one to reuse code-blocks in org files more easily.
 
 
-(require 'f)
-(require 'cl-lib)
+(use-package f
+  :straight t)
+(use-package cl-lib
+  :straight t)
 
 (defvar scimax-lob-directory (directory-file-name (expand-file-name "scimax-lob" scimax-dir))
   "Directory where library of babel org files reside.")

@@ -7013,7 +7013,7 @@ predicate."
 ;;; modifies your existing `bookmark-default-file' (`~/.emacs.bmk'), after
 ;;; backing up that file (suffixing the name with \"_saveNUMBER\")."
 ;;;   (interactive)
-;;;   (require 'cl)                         ; For `gensym'
+;;;   (require 'cl-lib)                         ; For `gensym'
 ;;;   (if (not (yes-or-no-p
 ;;;              "This will modify your bookmark file, after backing it up.  OK? "))
 ;;;       (message "OK, nothing done")

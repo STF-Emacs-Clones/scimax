@@ -27,9 +27,9 @@
   "Face for python blocks")
 
 
-(defface org-block-ipython
-  `((t (:background "thistle1")))
-  "Face for python blocks")
+;; (defface org-block-ipython
+;;   `((t (:background "thistle1")))
+;;   "Face for python blocks")
 
 
 (defface org-block-jupyter-hy

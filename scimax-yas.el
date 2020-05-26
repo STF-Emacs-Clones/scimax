@@ -11,7 +11,8 @@
 ;; The variable `scimax-snippet-dir' defines the directory where scimax snippets
 ;; are stored.
 
-(require 'yasnippet)
+(use-package yasnippet
+  :straight t)
 
 (defcustom scimax-snippet-dir (expand-file-name "snippets" scimax-dir)
   "Directory to store snippets in.")

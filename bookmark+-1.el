@@ -793,7 +793,8 @@
 
 (when (> emacs-major-version 21) (require 'font-lock+ nil t)) ;; font-lock-ignore (text property)
 
-(require 'bookmark)
+(use-package bookmark
+  :straight t)
 ;; bookmark-alist, bookmark-alist-modification-count, bookmark-annotation-name,
 ;; bookmark-automatically-show-annotations, bookmark-bmenu-bookmark,
 ;; bookmark-bmenu-surreptitiously-rebuild-list, bookmark-buffer-file-name, bookmark-buffer-name,

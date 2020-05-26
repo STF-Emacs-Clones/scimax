@@ -3,7 +3,8 @@
 ;;; Commentary:
 ;; These are scimax modifications to how org generates Latex or Latex equation fragments.
 
-(require 'ox-latex)
+(use-package ox-latex
+  :straight org)
 
 (defvar scimax-toggle-latex-fragment-func
   (if (fboundp 'org-latex-preview)

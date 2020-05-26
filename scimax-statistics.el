@@ -5,11 +5,16 @@
 
 ;;; Code:
 
-(use-package ess)
-(use-package ess-R-data-view)
-(use-package ess-smart-equals)
-(use-package ess-smart-underscore)
-(use-package polymode)
+(use-package ess
+  :straight t)
+(use-package ess-R-data-view
+  :straight t)
+(use-package ess-smart-equals
+  :straight t)
+(use-package ess-smart-underscore
+  :straight t)
+(use-package polymode
+  :straight t)
 
 ;;; The following chunk is taken from: https://github.com/syl20bnr/spacemacs/blob/master/layers/%2Blang/ess/packages.el
 ;;; Follow Hadley Wickham's R style guide

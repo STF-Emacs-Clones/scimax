@@ -22,7 +22,8 @@
 ;;; Commentary:
 ;; some utilities for the scimax
 
-(require 'easymenu)
+(use-package easymenu
+  :straight (easymenu :type built-in))
 (require 'scimax-utils)
 
 ;;; Code:

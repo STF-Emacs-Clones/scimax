@@ -4,12 +4,18 @@
 
 
 ;;; Code:
-(require 'org)
-(require 'org-inlinetask)
-(require 'org-mouse)
-(require 'org-ref)
-(require 'org-agenda)
-(require 'dash)
+(use-package org
+  :straight t)
+(use-package org-inlinetask
+  :straight org)
+(use-package org-mouse
+  :straight org)
+(use-package org-ref
+  :straight t)
+(use-package org-agenda
+  :straight org)
+(use-package dash
+  :straight t)
 
 ;; * Configuration of org-mode
 ;; Make editing invisible regions smart
@@ -206,7 +212,7 @@ is positive, move after, and if negative, move before."
 
 ;; ** jupyter ipython blocks
 
-(require 'scimax-org-babel-ipython-upstream)
+;; (require 'scimax-org-babel-ipython-upstream)
 
 ;; ** jupyter-hy blocks
 ;; make src blocks open in the right mode
@@ -225,9 +231,9 @@ is positive, move after, and if negative, move before."
 	(:hlines . "no")
 	(:tangle . "no")))
 
-(defalias 'org-babel-execute:jupyter-hy 'org-babel-execute:ipython)
-(defalias 'org-babel-prep-session:jupyter-hy 'org-babel-prep-session:ipython)
-(defalias 'org-babel-jupyter-hy-initiate-session 'org-babel-ipython-initiate-session)
+;; (defalias 'org-babel-execute:jupyter-hy 'org-babel-execute:jupyter)
+;; (defalias 'org-babel-prep-session:jupyter-hy 'org-babel-prep-session:jupyter)
+;; (defalias 'org-babel-jupyter-hy-initiate-session 'org-babel-ipython-initiate-session)
 
 ;; (when (version< (org-version) "9.2")
 ;;   (add-to-list 'org-structure-template-alist

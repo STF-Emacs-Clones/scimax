@@ -2,7 +2,8 @@
 
 ;;; Commentary:
 ;;
-(require 'counsel)
+(use-package counsel
+  :straight t)
 
 ;; * Generic ivy actions
 (ivy-set-actions

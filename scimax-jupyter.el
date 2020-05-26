@@ -4,7 +4,8 @@
 ;; This provides some fine-tuning of key bindings, and loads jupyter for scimax.
 
 (require 'scimax-ob)
-(require 'jupyter)
+(use-package jupyter
+  :straight t)
 
 
 (add-to-list 'org-babel-load-languages '(jupyter . t) t)

@@ -3,14 +3,14 @@
 ;;; Commentary:
 ;;
 ;; * Basic settings
-(defcustom scimax-theme 'leuven
-  "Theme to use for scimax. Defaults to `leuven'.
-Set to nil to avoid loading a theme."
-  :group 'scimax)
+;; (defcustom scimax-theme 'leuven
+;;   "Theme to use for scimax. Defaults to `leuven'.
+;; Set to nil to avoid loading a theme."
+;;   :group 'scimax)
 
 
-(when scimax-theme
-  (load-theme scimax-theme))
+;; (when scimax-theme
+;;   (load-theme scimax-theme))
 
 
 ;; Source code pro for the font if it is available
@@ -21,7 +21,8 @@ Set to nil to avoid loading a theme."
 
 (setq inhibit-startup-screen t) ;; stop showing startup screen
 (tool-bar-mode 0)           ; remove the icons
-(menu-bar-mode 1)           ; keep the menus
+(menu-bar-mode 0)           ; keep the menus
+(scroll-bar-mode 0)         ; disable scrollbar
 (global-visual-line-mode 1) ;; how long lines are handled.  This
                             ;; appears to wrap long lines visually,
                             ;; but not add line-returns
@@ -65,16 +66,6 @@ Set to nil to avoid loading a theme."
     (shell-command "git pull origin master")
     (shell-command "git submodule update")
     (load-file "init.el")))
-
-;; * Diminish modes
-;; (diminish 'orgstruct-mode)
-(diminish 'ivy-mode)
-(diminish 'lispy-mode)
-(diminish 'abbrev-mode)
-(diminish 'visual-line-mode)
-(diminish 'beacon-mode)
-(diminish 'aggressive-indent-mode)
-(diminish 'emacs-keybinding-command-tooltip-mode)
 
 ;; * Programming
 ;; ** debugging
@@ -153,7 +144,7 @@ Set to nil to avoid loading a theme."
 
 ;; * Misc
 
-(require 'image-mode)
+(use-package image-mode)
 (define-key image-mode-map (kbd "q")
   (lambda ()
     (interactive)
@@ -341,15 +332,15 @@ Set to nil to avoid loading a theme."
 
 ;; * dired enhancements
 ;; http://ergoemacs.org/emacs/elisp_dired_rename_space_to_underscore.html
-(require 'dired )
+(use-package dired)
 
 (defun scimax-dired-cycle-space-hyphen-underscore ()
   "In dired, rename current or marked files by cycling spaces->hyphens->underscores.
 We only change the filename, not the rest of the path.
 Adapted from http://ergoemacs.org/emacs/elisp_dired_rename_space_to_underscore.html."
   (interactive)
-  (require 'f)
-  (require 'dired-aux)
+  (use-package f)
+  (use-package dired-aux)
   (if (equal major-mode 'dired-mode)
       (let ((p (point))
 	    (new-names '())

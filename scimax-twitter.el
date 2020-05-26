@@ -21,7 +21,8 @@
 ;; Tweet a subtree as a thread: `scimax-twitter-org-subtree-tweet-thread'
 ;; TODO: check for lengths before trying to send.
 ;;
-(require 'f)
+(use-package f
+  :straight t)
 (require 'scimax-functional-text)
 
 

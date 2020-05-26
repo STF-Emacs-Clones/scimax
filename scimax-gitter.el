@@ -9,8 +9,10 @@
 ;; where token comes from going to https://developer.gitter.im/apps
 
 ;;; Code:
-(require 'erc)
-(require 'ox-md)
+(use-package erc
+  :straight t)
+(use-package ox-md
+  :straight t)
 
 ;; Customized markdown exporter to handle some cases different than the regular
 ;; md exporter.

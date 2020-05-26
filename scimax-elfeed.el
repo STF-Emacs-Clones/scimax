@@ -4,7 +4,8 @@
 ;; This just sets up elfeed for scimax. It sets some default feeds and
 ;; categories, and some new org-mode integration and keybindings.
 
-(require 'elfeed)
+(use-package elfeed
+  :straight t)
 
 ;;; Code:
 (loop for feed in '(("http://planetpython.org/rss20.xml" python)
