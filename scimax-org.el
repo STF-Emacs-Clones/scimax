@@ -210,9 +210,20 @@ is positive, move after, and if negative, move before."
 	(:tangle . "no")
 	(:eval . "never-export")))
 
-;; ** jupyter ipython blocks
+;; ** jupyter-python blocks
+(add-to-list 'org-src-lang-modes '("jupyter-python" . python))
+(add-to-list 'org-latex-minted-langs '(jupyter-python  "python"))
 
-;; (require 'scimax-org-babel-ipython-upstream)
+;; set default headers for convenience
+(setq org-babel-default-header-args:jupyter-python
+      '((:results . "output replace")
+	(:session . "py")
+	(:exports . "both")
+	(:eval . "never-export")
+	(:cache .   "no")
+	(:noweb . "no")
+	(:hlines . "no")
+	(:tangle . "no")))
 
 ;; ** jupyter-hy blocks
 ;; make src blocks open in the right mode

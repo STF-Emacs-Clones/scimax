@@ -13,7 +13,6 @@
 
 
 
-;; see [[nb:scimax::scimax-org-babel-ipython-upstream.el::c3312]]
 ;; for more definitions.
 (cl-loop for (key . def) in '(("C-<return>" . org-ctrl-c-ctrl-c)
 			      ("M-<return>" . (lambda ()

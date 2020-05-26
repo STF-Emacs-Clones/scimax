@@ -1155,7 +1155,7 @@ doesn't move, it means you were at the beginning of a paragraph."
 		 (cond
 		  ((eql (car el) 'src-block)
 		   (cond
-		    ((string= "ipython" (car (org-babel-get-src-block-info)))
+		    ((string= "jupyter-python" (car (org-babel-get-src-block-info)))
 		     (scimax-obi/body))
 		    (t
 		     (scimax-open-hydra scimax-src-block-hydra/body))))

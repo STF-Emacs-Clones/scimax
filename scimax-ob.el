@@ -380,52 +380,52 @@ them."
   :group :scimax)
 
 
-;; (defcustom scimax-src-block-keymaps
-;;   `(("ipython" . ,(let ((map (copy-keymap (make-composed-keymap
-;; 					   `(,scimax-python-edit-mode-map
-;; 					     ,python-mode-map
-;; 					     ,pyvenv-mode-map)
-;; 					   org-mode-map))))
-;; 		    ;; In org-mode I define RET so we f
-;; 		    (define-key map (kbd "<return>") 'newline)
-;; 		    (define-key map (kbd "C-c C-c") 'org-ctrl-c-ctrl-c)
-;; 		    map))
-;;     ("python" . ,(let ((map (copy-keymap (make-composed-keymap
-;; 					  `(,scimax-python-edit-mode-map
-;; 					    ,python-mode-map
-;; 					    ,pyvenv-mode-map)
-;; 					  org-mode-map))))
-;; 		   ;; In org-mode I define RET so we f
-;; 		   (define-key map (kbd "<return>") 'newline)
-;; 		   (define-key map (kbd "C-c C-c") 'org-ctrl-c-ctrl-c)
-;; 		   map))
-;;     ("emacs-lisp" . ,(let ((map (copy-keymap (make-composed-keymap
-;; 					      `(,lispy-mode-map
-;; 						,emacs-lisp-mode-map
-;; 						,outline-minor-mode-map)
-;; 					      org-mode-map))))
-;; 		       (define-key map (kbd "C-c C-c") 'org-ctrl-c-ctrl-c)
-;; 		       map)))
-;;   "alist of custom keymaps for src blocks."
-;;   :group :scimax)
+(defcustom scimax-src-block-keymaps
+  `(("jupyter-python" . ,(let ((map (copy-keymap (make-composed-keymap
+   					   `(,scimax-python-edit-mode-map
+   					     ,python-mode-map
+   					     ,pyvenv-mode-map)
+   					   org-mode-map))))
+                    ;; 		    ;; In org-mode I define RET so we f
+   		    (define-key map (kbd "<return>") 'newline)
+   		    (define-key map (kbd "C-c C-c") 'org-ctrl-c-ctrl-c)
+   		    map))
+    ("python" . ,(let ((map (copy-keymap (make-composed-keymap
+   					  `(,scimax-python-edit-mode-map
+   					    ,python-mode-map
+   					    ,pyvenv-mode-map)
+   					  org-mode-map))))
+                   ;; 		   ;; In org-mode I define RET so we f
+   		   (define-key map (kbd "<return>") 'newline)
+   		   (define-key map (kbd "C-c C-c") 'org-ctrl-c-ctrl-c)
+   		   map))
+    ("emacs-lisp" . ,(let ((map (copy-keymap (make-composed-keymap
+   					      `(,lispy-mode-map
+   						,emacs-lisp-mode-map
+   						,outline-minor-mode-map)
+   					      org-mode-map))))
+   		       (define-key map (kbd "C-c C-c") 'org-ctrl-c-ctrl-c)
+   		       map)))
+  "alist of custom keymaps for src blocks."
+  :group :scimax)
 
 
 
-(define-minor-mode scimax-src-keymap-mode
-  "Minor mode to add mode keymaps to src-blocks."
-  :init-value nil
-  (if scimax-src-keymap-mode
-      (progn
-        (add-hook 'org-font-lock-hook #'scimax-add-keymap-to-src-blocks t)
-        (add-to-list 'font-lock-extra-managed-props 'local-map)
-        (add-to-list 'font-lock-extra-managed-props 'cursor-sensor-functions)
-        (advice-add 'lispy--eval :around 'scimax-spoof-mode)
-        (cursor-sensor-mode 1)
-        (message "scimax-src-keymap-mode enabled"))
-    (remove-hook 'org-font-lock-hook #'scimax-add-keymap-to-src-blocks)
-    (advice-remove 'lispy--eval 'scimax-spoof-mode)
-    (cursor-sensor-mode -1))
-  (font-lock-fontify-buffer))
+  (define-minor-mode scimax-src-keymap-mode
+    "Minor mode to add mode keymaps to src-blocks."
+    :init-value nil
+    (if scimax-src-keymap-mode
+        (progn
+          (add-hook 'org-font-lock-hook #'scimax-add-keymap-to-src-blocks t)
+          (add-to-list 'font-lock-extra-managed-props 'local-map)
+          (add-to-list 'font-lock-extra-managed-props 'cursor-sensor-functions)
+          (advice-add 'lispy--eval :around 'scimax-spoof-mode)
+          (cursor-sensor-mode 1)
+          (message "scimax-src-keymap-mode enabled"))
+      (remove-hook 'org-font-lock-hook #'scimax-add-keymap-to-src-blocks)
+      (advice-remove 'lispy--eval 'scimax-spoof-mode)
+      (cursor-sensor-mode -1))
+    (font-lock-fontify-buffer))
 
 ;; (add-hook 'org-mode-hook (lambda ()
 ;; 			   (scimax-src-keymap-mode +1)))

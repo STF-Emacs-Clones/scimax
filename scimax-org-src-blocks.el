@@ -27,14 +27,14 @@
   "Face for python blocks")
 
 
-;; (defface org-block-ipython
-;;   `((t (:background "thistle1")))
-;;   "Face for python blocks")
+(defface org-block-jupyter-python
+  `((t (:background "thistle1")))
+  "Face for python blocks")
 
 
-(defface org-block-jupyter-hy
-  `((t (:background "light goldenrod yellow")))
-  "Face for hylang blocks")
+  (defface org-block-jupyter-hy
+    `((t (:background "light goldenrod yellow")))
+    "Face for hylang blocks")
 
 
 (defface org-block-sh
