@@ -7,7 +7,7 @@
   :straight t)
 ;; (require 'scimax-notebook)
 (use-package cal-iso
-  :straight calendar)
+  :requires (calendar))
 
 ;;; Code:
 

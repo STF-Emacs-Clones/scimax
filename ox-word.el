@@ -22,7 +22,8 @@
 ;; https://www.zotero.org/styles
 
 ;;; Code:
-(require 'org-ref)
+(use-package org-ref
+  :straight (org-ref :type git :flavor melpa :files (:defaults "org-ref.org" "org-ref.bib" "citeproc" "org-ref-pkg.el") :host github :repo "jkitchin/org-ref"))
 
 (defcustom ox-word-pandoc-executable "pandoc"
   "Path to the pandoc executable.")

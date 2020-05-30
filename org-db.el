@@ -3,7 +3,8 @@
 ;;; Commentary:
 ;;
 (require 'cl-lib)
-(require 's)    ; for s-trim
+(use-package s
+  :stright t)    ; for s-trim
 (require 'org)
 (use-package emacsql-sqlite)
 
